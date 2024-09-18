@@ -1,12 +1,9 @@
-var apidomain="climbingclan.com"
-var apiusername="ck_3f8cd172e7aed36533d434e04e8c0b2affe19075"
-var apipassword="cs_817f3cd22ae28bc33fa716a6fdfd707188c0409b"
 
 
 
 /**
  * Sends a POST request to update a specific order in WordPress using the WooCommerce API.
- * 
+ *
  * @param {Object} data - The data to be sent to the WordPress API, representing order updates.
  * @param {number|string} order_id - The ID of the order to be updated.
  * @returns {number|string} Returns the ID of the updated order if successful, otherwise returns 'Error'.
@@ -37,7 +34,7 @@ function pokeToWordPressOrders(data, order_id) {
 
 /**
  * Sends a POST request to update a specific product in WordPress using the WooCommerce API.
- * 
+ *
  * @param {Object} data - The data to be sent to the WordPress API, representing product updates.
  * @param {number|string} product_id - The ID of the product to be updated.
  * @returns {number|string} Returns the ID of the updated product if successful, otherwise returns 'Error'.
@@ -67,7 +64,7 @@ function pokeToWordPressProducts(data, product_id) {
 
 /**
  * Sends a POST request to update user meta data in WordPress using the WooCommerce API.
- * 
+ *
  * @param {Object} data - The data to be sent to the WordPress API, representing user meta updates.
  * @param {number|string} user_id - The ID of the user whose meta data is to be updated.
  * @returns {Object|string} Returns the response data object if successful, otherwise returns 'Error'.
@@ -97,7 +94,7 @@ function pokeToWooUserMeta(data, user_id) {
 
 /**
  * Sends a POST request to add a note to a specific order in WordPress using the WooCommerce API.
- * 
+ *
  * @param {number|string} orderNumber - The number of the order to which the note is to be added.
  * @param {string} noteText - The text of the note to be added to the order.
  * @returns {number|string} Returns the ID of the note if successful, otherwise returns 'Error'.

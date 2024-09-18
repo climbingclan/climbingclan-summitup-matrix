@@ -1,7 +1,3 @@
-var apidomain="climbingclan.com"
-var apiusername="ck_3f8cd172e7aed36533d434e04e8c0b2affe19075"
-var apipassword="cs_817f3cd22ae28bc33fa716a6fdfd707188c0409b"
-
 
 function markAttended(){
 
@@ -124,13 +120,13 @@ function markAttendance(attendancetype, attendanceshow, orderstatus, metakey, me
   var first_name = sheet.getRange(currentRow, 5,1,1).getValue();  /// get submission ID 1 BV ( was 67)
 
   console.log(order_id);
-  
+
 // Input validation - prevent attendance being marked from any sheet other than "Output"
-if(SpreadsheetApp.getActiveSpreadsheet().getActiveSheet().getName() != 'Output'){Browser.msgBox('Attendance can only be marked from the "Output" sheet', Browser.Buttons.OK); return;}  
+if(SpreadsheetApp.getActiveSpreadsheet().getActiveSheet().getName() != 'Output'){Browser.msgBox('Attendance can only be marked from the "Output" sheet', Browser.Buttons.OK); return;}
 
-if(order_id === ""){Browser.msgBox('No Order ID Found', Browser.Buttons.OK); return;} 
+if(order_id === ""){Browser.msgBox('No Order ID Found', Browser.Buttons.OK); return;}
 
-  if (Browser.msgBox("Mark " + attendancetype + " on " +first_name + "'s place? \n Order " + order_id, Browser.Buttons.OK_CANCEL) == "ok") { 
+  if (Browser.msgBox("Mark " + attendancetype + " on " +first_name + "'s place? \n Order " + order_id, Browser.Buttons.OK_CANCEL) == "ok") {
 
 
 
@@ -138,10 +134,10 @@ var cc_attendance_setter =  Session.getActiveUser().getEmail();
 
 var data = {"meta_data": [
     {"key": metakey,
-    "value": metavalue}, 
+    "value": metavalue},
     {"key": "cc_attendance_set_by",
     "value": cc_attendance_setter }
-  ], 
+  ],
    "status": orderstatus
 };
 console.log(orderstatus);
@@ -162,7 +158,7 @@ var response = UrlFetchApp.fetch(url, options);
 
 //remove old data
 
-  
+
 var blankArray =[[attendanceshow,order_id,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,]];  /// set a blank variable to delete row (45 values)
 sheet.getRange(currentRow, 6,1,45).setValues(blankArray);   // paste the blank variables into the cells to delete contents
 }

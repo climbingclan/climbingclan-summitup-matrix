@@ -45,27 +45,22 @@ function onOpen() {
             .addSeparator()
       .addItem('Unassign Role', 'markVolunteerClear')
 
-      .addToUi();   
+      .addToUi();
 
   ui.createMenu('Refresh Matrix')
-      .addItem('Refresh All', 'runWednesdayMatrix')
+      .addItem('Refresh All', 'readData')
       .addSeparator()
-      .addItem('Refresh Output', 'runOutputTab')
+      .addItem('Refresh Output', 'refreshOutput')
+      //.addItem('Refresh Stats', 'refreshStats')
+      .addItem('Refresh Lead Training', 'refreshLeadBelayTraining')
+      .addItem('Refresh TR Belay Training', 'refreshTopRopeTraining')
+      .addItem('Refresh Event Listings', 'refreshEventListing')
+      //.addItem('Refresh Roles', 'refreshRoles')
+      //.addItem('Refresh Volunteer Intent', 'refreshVolunteerIntent')
       .addSeparator()
-      .addItem('Refresh Volunteering', 'volunteerData')
-      .addItem('Refresh Roles', 'runRolesTab')
-      //.addItem('Refresh Volunteering-old', 'runVolunteeringTab')
-           .addSeparator()
-      .addItem('Refresh Lead Training', 'leadBelayTrainingData')
-      .addItem('Refresh TR Belay Training', 'topRopeTrainingData')
-
-                 .addSeparator()
-
-      .addItem('Refresh Event Listings Dashboard', 'readEvents')
-      .addItem('Refresh Badges', 'badgesData')
-
-
-      .addToUi();   
+      .addItem('Refresh Volunteering', 'refreshVolunteering')
+      //.addItem('Refresh Badges', 'refreshBadges')
+      .addToUi();
 
         ui.createMenu('Badges & bands')
       .addItem('Mark Given Badge', 'markGivenBadge')
@@ -75,7 +70,7 @@ function onOpen() {
 
 
 
-      .addToUi();  
+      .addToUi();
 
         ui.createMenu('Give Volunteer Competencies')
       .addItem('Check-In - SignOff', 'giveCheckIn')
@@ -97,6 +92,108 @@ function onOpen() {
       //.addItem('Set Non Belayer', 'setSkillsDownNoBelaying')
 
 
-      .addToUi();  
+      .addToUi();
 
+}
+
+function refreshOutput() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+  readOutput(stmt);
+  stmt.close();
+  conn.close();
+}
+
+function refreshStats() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+  readStats(stmt);
+  stmt.close();
+  conn.close();
+}
+
+function refreshLeadBelayTraining() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+  readLeadBelayTraining(stmt);
+  stmt.close();
+  conn.close();
+}
+
+function refreshTopRopeTraining() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+  readTopRopeTraining(stmt);
+  stmt.close();
+  conn.close();
+}
+
+function refreshEventListing() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+  readEventListing(stmt);
+  stmt.close();
+  conn.close();
+}
+
+function refreshVolunteerIntent() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+  readVolunteerIntent(stmt);
+  stmt.close();
+  conn.close();
+}
+
+function refreshRoles() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+  readRoles(stmt);
+  stmt.close();
+  conn.close();
+}
+
+function refreshVolunteering() {
+  readVolunteerData();
+}
+
+function refreshBadges() {
+  readBadgesData();
+}
+
+function readVolunteerData() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+
+  readVolunteers(stmt);
+
+  stmt.close();
+  conn.close();
+}
+
+function readBadgesData() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+
+  readBadgesNeeded(stmt);
+  readBandsNeeded(stmt);
+  readBadgesGiven(stmt);
+
+  stmt.close();
+  conn.close();
+}
+
+function refreshEventListings() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+
+  readEventListing(stmt);
+
+  stmt.close();
+  conn.close();
+}
+function onOpen() {
+  var ui = SpreadsheetApp.getUi();
+  ui.createMenu('Custom Menu')
+    .addItem('Refresh Event Listings', 'refreshEventListings')
+    .addToUi();
 }

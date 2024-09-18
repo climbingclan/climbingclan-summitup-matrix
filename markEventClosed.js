@@ -96,8 +96,8 @@ function markAttendedAndCloseEvent() {
                 SpreadsheetApp.getActiveSpreadsheet().toast('Signup now being closed', 'Status', 5);
 
                 sendAllCragAssignments("close");
-                SpreadsheetApp.getActiveSpreadsheet().toast('Mark all attended completed successfully', 'Complete', 60);
-                SpreadsheetApp.getActiveSpreadsheet().toast('You can now close this window ', 'Status', 50);
+                SpreadsheetApp.getActiveSpreadsheet().toast('Mark all attended completed successfully', 'Status', 5);
+                SpreadsheetApp.getActiveSpreadsheet().toast('You can now close this window ', 'Status', 5);
                 SpreadsheetApp.getActiveSpreadsheet().toast('Thanks for all you have done for the Clan this evening', 'Status', 150);
 
                 try {
