@@ -1,61 +1,61 @@
 function giveTripDirector(){
-var meta_key = "competency_indoor_trip_director"
-var meta_value = "Signed Off"
-giveCompetency(meta_key, meta_value)
+  const meta_key = "competency_indoor_trip_director"
+  const meta_value = "Signed Off"
+  giveCompetency(meta_key, meta_value)
 }
 
 function giveTripDirectorTraining(){
-var meta_key = "competency_indoor_trip_director"
-var meta_value = "In Training"
-giveCompetency(meta_key, meta_value)
+  const meta_key = "competency_indoor_trip_director"
+  const meta_value = "In Training"
+  giveCompetency(meta_key, meta_value)
 }
 
 function giveTripDirectorToLearn(){
-var meta_key = "competency_indoor_trip_director"
-var meta_value = "Keen to Learn"
-giveCompetency(meta_key, meta_value)
+  const meta_key = "competency_indoor_trip_director"
+  const meta_value = "Keen to Learn"
+  giveCompetency(meta_key, meta_value)
 }
 
 function giveTripDirectorToRemove(){
-var meta_key = "competency_indoor_trip_director"
-var meta_value = ""
-giveCompetency(meta_key, meta_value)
+  const meta_key = "competency_indoor_trip_director"
+  const meta_value = ""
+  giveCompetency(meta_key, meta_value)
 }
 
 function givePairing(){
-var meta_key = "competency_indoor_pairing"
-var meta_value = "Signed Off"
-giveCompetency(meta_key, meta_value)
+  const meta_key = "competency_indoor_pairing"
+  const meta_value = "Signed Off"
+  giveCompetency(meta_key, meta_value)
 }
 
 function givePairingTraining(){
-var meta_key = "competency_indoor_pairing"
-var meta_value = "In Training"
-giveCompetency(meta_key, meta_value)
+  const meta_key = "competency_indoor_pairing"
+  const meta_value = "In Training"
+  giveCompetency(meta_key, meta_value)
 }
 
 function givePairingToLearn(){
-var meta_key = "competency_indoor_pairing"
-var meta_value = "Keen to Learn"
-giveCompetency(meta_key, meta_value)
+  const meta_key = "competency_indoor_pairing"
+  const meta_value = "Keen to Learn"
+  giveCompetency(meta_key, meta_value)
 }
 
 function giveFloorwalker(){
-var meta_key = "competency_indoor_floorwalker"
-var meta_value = "Signed Off"
-giveCompetency(meta_key, meta_value)
+  const meta_key = "competency_indoor_floorwalker"
+  const meta_value = "Signed Off"
+  giveCompetency(meta_key, meta_value)
 }
 
 function giveAnnouncements(){
-var meta_key = "competency_indoor_announcements"
-var meta_value = "Signed Off"
-giveCompetency(meta_key, meta_value)
+  const meta_key = "competency_indoor_announcements"
+  const meta_value = "Signed Off"
+  giveCompetency(meta_key, meta_value)
 }
 
 function giveCheckIn(){
-var meta_key = "competency_indoor_checkin"
-var meta_value = "Signed Off"
-giveCompetency(meta_key, meta_value)
+  const meta_key = "competency_indoor_checkin"
+  const meta_value = "Signed Off"
+  giveCompetency(meta_key, meta_value)
 }
 
 

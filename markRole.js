@@ -6,13 +6,13 @@ let cc_volunteer_old = "tuesdaypromo1"
 }
 
 function markVolunteerWednesdayPromo1(){
-var cc_volunteer_old = "wednesdaypromo1"
+  let cc_volunteer_old = "wednesdaypromo1"
   let volunteer = searchEmailsSheet(cc_volunteer_old);
   assignRole(volunteer, cc_volunteer_old);
 }
 
 function markVolunteerPostPromo1(){
-var cc_volunteer_old = "postpromo1"
+  let cc_volunteer_old = "postpromo1"
   let volunteer = searchEmailsSheet(cc_volunteer_old);
   assignRole(volunteer, cc_volunteer_old);
 }

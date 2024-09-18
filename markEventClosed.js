@@ -10,20 +10,20 @@ function sendAllCragAssignments(tellme) {
     const action = tellme;
     
     // Establish a database connection
-    var sconn = Jdbc.getConnection(url, username, password);
-    var sstmt = sconn.createStatement();
+    const sconn = Jdbc.getConnection(url, username, password);
+    const sstmt = sconn.createStatement();
 
     // Retrieve product_id from the 'Dashboard' sheet
-    var spreadsheet = SpreadsheetApp.getActive();
-    var sheet = spreadsheet.getSheetByName('Dashboard');
-    var product_id = sheet.getRange('B5').getValues();
+    const spreadsheet = SpreadsheetApp.getActive();
+    const sheet = spreadsheet.getSheetByName('Dashboard');
+    const product_id = sheet.getRange('B5').getValues();
 
     // Execute a query to find orders with specific criteria
-    var order_results = sstmt.executeQuery('SELECT distinct order_id from wp_order_product_customer_lookup where product_id="' + product_id + '"  AND `cc_location`="' + cc_location + '" AND status="wc-processing" AND cc_attendance="pending" LIMIT 99');
+    const order_results = sstmt.executeQuery('SELECT distinct order_id from wp_order_product_customer_lookup where product_id="' + product_id + '"  AND `cc_location`="' + cc_location + '" AND status="wc-processing" AND cc_attendance="pending" LIMIT 99');
     
     // Get the email of the active user and current Unix time
-    let active_user = Session.getActiveUser().getEmail();
-    let currentUnixTime = Date.now();
+    const active_user = Session.getActiveUser().getEmail();
+    const currentUnixTime = Date.now();
 
     // Process each order result
     while (order_results.next()) {
@@ -33,11 +33,11 @@ function sendAllCragAssignments(tellme) {
         }
         console.log(scores_arr);
 
-        let order_id = scores_arr[0];
+        const order_id = scores_arr[0];
 
         // If action is 'close', prepare and log the data
         if (action === "close") {
-            var data = {
+            const data = {
                 "status": "completed",
                 "meta_data": [
                     {
@@ -62,7 +62,7 @@ function sendAllCragAssignments(tellme) {
     // If action is 'close', set product status to 'private'
     if (action === "close") {
       try{
-        var data = {
+        const data = {
             "status": "private",
             "meta_data": [
                 {
