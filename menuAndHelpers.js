@@ -54,7 +54,7 @@ function onOpen() {
       //.addItem('Refresh Stats', 'refreshStats')
       .addItem('Refresh Lead Training', 'refreshLeadBelayTraining')
       .addItem('Refresh TR Belay Training', 'refreshTopRopeTraining')
-      .addItem('Refresh Event Listings', 'refreshEventListing')
+      .addItem('Refresh Event Listings', 'refreshEventListings')
       //.addItem('Refresh Roles', 'refreshRoles')
       //.addItem('Refresh Volunteer Intent', 'refreshVolunteerIntent')
       .addSeparator()
@@ -191,9 +191,4 @@ function refreshEventListings() {
   stmt.close();
   conn.close();
 }
-function onOpen() {
-  var ui = SpreadsheetApp.getUi();
-  ui.createMenu('Custom Menu')
-    .addItem('Refresh Event Listings', 'refreshEventListings')
-    .addToUi();
-}
+
