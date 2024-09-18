@@ -73,7 +73,9 @@ function getColumnRange(sheet, columnHeader) {
   if (columnIndex === 0) {
     throw new Error(`Column '${columnHeader}' not found in the sheet.`);
   }
-  return sheet.getRange(2, columnIndex, sheet.getLastRow() - 1, 1);
+  const lastRow = sheet.getLastRow();
+  const numRows = Math.max(5, lastRow - 1);
+  return sheet.getRange(2, columnIndex, numRows, 1);
 }
 
 function setColoursFormat(sheet, columnHeader, search, colour) {
