@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/climbingclan/summitup-matrix.git"
+    "url": "git+https://github.com/climbingclan/climbingclan-summitup-matrix.git"
   },
   "author": "Tim Dobson",
-  "license": "GPL-3.0",
+  "license": "All Rights Reserved",
   "bugs": {
-    "url": "https://github.com/climbingclan/summitup-matrix/issues"
+    "url": "https://github.com/climbingclan/climbingclan-summitup-matrix/issues"
   },
-  "homepage": "https://github.com/climbingclan/summitup-matrix#readme",
+  "homepage": "https://github.com/climbingclan/climbingclan-summitup-matrix#readme",
   "dependencies": {
     "@types/google-apps-script": "^1.0.56",
     "clasp": "^1.0.0"
