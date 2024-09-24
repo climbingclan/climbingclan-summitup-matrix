@@ -17,7 +17,7 @@
     "url": "git+https://github.com/climbingclan/summitup-matrix.git"
   },
   "author": "Tim Dobson",
-  "license": "All Rights Reserved",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/climbingclan/summitup-matrix/issues"
   },
