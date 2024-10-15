@@ -1,12 +1,13 @@
 function readEventListing(stmt) {
 	const useNewConnection = !stmt;
+	let localStmt = stmt;
 
 	if (useNewConnection) {
-		var conn = Jdbc.getConnection(url, username, password);
-		stmt = conn.createStatement();
+		const conn = Jdbc.getConnection(url, username, password);
+		localStmt = conn.createStatement();
 	}
 
-	makeReport(stmt, {
+	makeReport(localStmt, {
 		sheetName: "Event List",
 		query: `
       SELECT DISTINCT 
@@ -24,7 +25,7 @@ function readEventListing(stmt) {
 	});
 
 	if (useNewConnection) {
-		stmt.close();
+		localStmt.close();
 		conn.close();
 	}
 }

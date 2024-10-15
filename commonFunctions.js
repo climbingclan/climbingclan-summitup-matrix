@@ -27,15 +27,15 @@ const colors = {
 };
 
 function setupSheet(name) {
-	var spreadsheet = SpreadsheetApp.getActive();
-	var sheet = spreadsheet.getSheetByName(name);
+	const spreadsheet = SpreadsheetApp.getActive();
+	const sheet = spreadsheet.getSheetByName(name);
 	sheet.clearContents();
 	sheet.clearFormats();
 	return sheet;
 }
 
 function setupCell(name, range) {
-	var spreadsheet = SpreadsheetApp.getActive();
+	const spreadsheet = SpreadsheetApp.getActive();
 	const sheet = spreadsheet.getSheetByName(name);
 	const cellValue = sheet.getRange(range).getValue();
 
@@ -83,30 +83,30 @@ function getColumnRange(sheet, columnHeader) {
 
 function setColoursFormat(sheet, columnHeader, search, colour) {
 	const range = getColumnRange(sheet, columnHeader);
-	var rule = SpreadsheetApp.newConditionalFormatRule()
+	const rule = SpreadsheetApp.newConditionalFormatRule()
 		.whenTextContains(search)
 		.setBackground(colour)
 		.setRanges([range])
 		.build();
-	var rules = sheet.getConditionalFormatRules();
+	const rules = sheet.getConditionalFormatRules();
 	rules.push(rule);
 	sheet.setConditionalFormatRules(rules);
 }
 
 function setTextFormat(sheet, columnHeader, search, colour) {
 	const range = getColumnRange(sheet, columnHeader);
-	var rule = SpreadsheetApp.newConditionalFormatRule()
+	const rule = SpreadsheetApp.newConditionalFormatRule()
 		.whenTextContains(search)
 		.setFontColor(colour)
 		.setRanges([range])
 		.build();
-	var rules = sheet.getConditionalFormatRules();
+	const rules = sheet.getConditionalFormatRules();
 	rules.push(rule);
 	sheet.setConditionalFormatRules(rules);
 }
 
 function setWrapped(sheet, columnHeader) {
-	var range = getColumnRange(sheet, columnHeader);
+	const range = getColumnRange(sheet, columnHeader);
 	range.setWrap(true);
 	sheet.setColumnWidth(range.getColumn(), 300); // Set column width to 300 pixels
 }
@@ -117,14 +117,14 @@ function setColoursFormatLessThanOrEqualTo(
 	search,
 	colour,
 ) {
-	search = Number(search);
+	const numberSearch = Number(search);
 	const range = getColumnRange(sheet, columnHeader);
-	var rule = SpreadsheetApp.newConditionalFormatRule()
-		.whenNumberLessThanOrEqualTo(search)
+	const rule = SpreadsheetApp.newConditionalFormatRule()
+		.whenNumberLessThanOrEqualTo(numberSearch)
 		.setBackground(colour)
 		.setRanges([range])
 		.build();
-	var rules = sheet.getConditionalFormatRules();
+	const rules = sheet.getConditionalFormatRules();
 	rules.push(rule);
 	sheet.setConditionalFormatRules(rules);
 }
@@ -141,18 +141,18 @@ function makeReport(stmt, reportConfig) {
 
 	// Only replace ${cell} if it exists in the query
 	if (query.includes("${cell}")) {
-		if (isNaN(cell) || cell === "") {
+		if (Number.isNaN(Number(cell)) || cell === "") {
 			throw new Error("Invalid event selected - please try again");
 		}
 		query = query.replace(/\${cell}/g, cell);
 	}
 
-	var results = stmt.executeQuery(query);
+	const results = stmt.executeQuery(query);
 
 	appendToSheet(sheet, results);
 
 	if (reportConfig.formatting) {
-		reportConfig.formatting.forEach((format) => {
+		for (const format of reportConfig.formatting) {
 			if (format.type === "color") {
 				setColoursFormat(sheet, format.column, format.search, format.color);
 			} else if (format.type === "text") {
@@ -171,7 +171,7 @@ function makeReport(stmt, reportConfig) {
 			} else if (format.type === "columnWidth") {
 				setColumnWidth(sheet, format.column, format.width);
 			}
-		});
+		}
 	}
 
 	results.close();
@@ -235,26 +235,26 @@ function appendToSheetWithNoClear(sheet, results) {
 }
 
 function searchEmailsSheet(ccVolunteerOld) {
-	var sheetName = "Emails";
-	var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
-	var dataRange = sheet.getDataRange();
-	var values = dataRange.getValues();
-	var numRows = dataRange.getNumRows();
-	var numCols = dataRange.getNumColumns();
-	var returnObj = {};
-	for (var i = 1; i < numRows; i++) {
-		if (values[i][0] == "cc_volunteer_old") {
-			var foundColumn = -1;
-			for (var j = 1; j < numCols; j++) {
-				if (values[i][j] == ccVolunteerOld) {
+	const sheetName = "Emails";
+	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
+	const dataRange = sheet.getDataRange();
+	const values = dataRange.getValues();
+	const numRows = dataRange.getNumRows();
+	const numCols = dataRange.getNumColumns();
+	const returnObj = {};
+	for (let i = 1; i < numRows; i++) {
+		if (values[i][0] === "cc_volunteer_old") {
+			let foundColumn = -1;
+			for (let j = 1; j < numCols; j++) {
+				if (values[i][j] === ccVolunteerOld) {
 					foundColumn = j;
 					break;
 				}
 			}
-			if (foundColumn == -1) {
+			if (foundColumn === -1) {
 				throw new Error("Column not found");
 			}
-			for (var k = 1; k < numRows; k++) {
+			for (let k = 1; k < numRows; k++) {
 				returnObj[values[k][0]] = values[k][foundColumn];
 			}
 			break;
