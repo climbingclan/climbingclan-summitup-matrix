@@ -1,5 +1,5 @@
 function onOpen() {
-	var ui = SpreadsheetApp.getUi();
+	const ui = SpreadsheetApp.getUi();
 	ui.createMenu("Mark an Attendance")
 		.addItem("Mark Cancelled", "markCancelled")
 		.addItem("Mark Late Bail", "markLateBail")
@@ -96,56 +96,56 @@ function onOpen() {
 }
 
 function refreshOutput() {
-	var conn = Jdbc.getConnection(url, username, password);
-	var stmt = conn.createStatement();
+	const conn = Jdbc.getConnection(url, username, password);
+	const stmt = conn.createStatement();
 	readOutput(stmt);
 	stmt.close();
 	conn.close();
 }
 
 function refreshStats() {
-	var conn = Jdbc.getConnection(url, username, password);
-	var stmt = conn.createStatement();
+	const conn = Jdbc.getConnection(url, username, password);
+	const stmt = conn.createStatement();
 	readStats(stmt);
 	stmt.close();
 	conn.close();
 }
 
 function refreshLeadBelayTraining() {
-	var conn = Jdbc.getConnection(url, username, password);
-	var stmt = conn.createStatement();
+	const conn = Jdbc.getConnection(url, username, password);
+	const stmt = conn.createStatement();
 	readLeadBelayTraining(stmt);
 	stmt.close();
 	conn.close();
 }
 
 function refreshTopRopeTraining() {
-	var conn = Jdbc.getConnection(url, username, password);
-	var stmt = conn.createStatement();
+	const conn = Jdbc.getConnection(url, username, password);
+	const stmt = conn.createStatement();
 	readTopRopeTraining(stmt);
 	stmt.close();
 	conn.close();
 }
 
 function refreshEventListing() {
-	var conn = Jdbc.getConnection(url, username, password);
-	var stmt = conn.createStatement();
+	const conn = Jdbc.getConnection(url, username, password);
+	const stmt = conn.createStatement();
 	readEventListing(stmt);
 	stmt.close();
 	conn.close();
 }
 
 function refreshVolunteerIntent() {
-	var conn = Jdbc.getConnection(url, username, password);
-	var stmt = conn.createStatement();
+	const conn = Jdbc.getConnection(url, username, password);
+	const stmt = conn.createStatement();
 	readVolunteerIntent(stmt);
 	stmt.close();
 	conn.close();
 }
 
 function refreshRoles() {
-	var conn = Jdbc.getConnection(url, username, password);
-	var stmt = conn.createStatement();
+	const conn = Jdbc.getConnection(url, username, password);
+	const stmt = conn.createStatement();
 	readRoles(stmt);
 	stmt.close();
 	conn.close();
@@ -160,8 +160,8 @@ function refreshBadges() {
 }
 
 function readVolunteerData() {
-	var conn = Jdbc.getConnection(url, username, password);
-	var stmt = conn.createStatement();
+	const conn = Jdbc.getConnection(url, username, password);
+	const stmt = conn.createStatement();
 
 	readVolunteers(stmt);
 
@@ -170,8 +170,8 @@ function readVolunteerData() {
 }
 
 function readBadgesData() {
-	var conn = Jdbc.getConnection(url, username, password);
-	var stmt = conn.createStatement();
+	const conn = Jdbc.getConnection(url, username, password);
+	const stmt = conn.createStatement();
 
 	readBadgesNeeded(stmt);
 	readBandsNeeded(stmt);
@@ -182,8 +182,8 @@ function readBadgesData() {
 }
 
 function refreshEventListings() {
-	var conn = Jdbc.getConnection(url, username, password);
-	var stmt = conn.createStatement();
+	const conn = Jdbc.getConnection(url, username, password);
+	const stmt = conn.createStatement();
 
 	readEventListing(stmt);
 
