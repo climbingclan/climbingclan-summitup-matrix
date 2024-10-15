@@ -128,8 +128,8 @@ function readVolunteers(stmt) {
 }
 
 function volunteerData() {
-	var conn = Jdbc.getConnection(url, username, password);
-	var stmt = conn.createStatement();
+	const conn = Jdbc.getConnection(url, username, password);
+	const stmt = conn.createStatement();
 
 	readVolunteers(stmt);
 
