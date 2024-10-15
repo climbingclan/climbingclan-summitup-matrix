@@ -1,22 +1,24 @@
 function readData() {
-	var conn = Jdbc.getConnection(url, username, password);
-	var stmt = conn.createStatement();
+  const conn = Jdbc.getConnection(url, username, password);
+  const stmt = conn.createStatement();
 
-	const reports = [
-		readOutput,
-		readVolunteers,
-		readLeadBelayTraining,
-		readEventListing,
-		readBadgesNeeded,
-		readBandsNeeded,
-		readTopRopeTraining,
-		readStats,
-		readRoles,
-		readVolunteerIntent,
-	];
+  const reports = [
+    readOutput,
+    readVolunteers,
+    readLeadBelayTraining,
+    readEventListing,
+    readBadgesNeeded,
+    readBandsNeeded,
+    readTopRopeTraining,
+    readStats,
+    readRoles,
+    readVolunteerIntent,
+  ];
 
-	reports.forEach((report) => report(stmt));
+  for (const report of reports) {
+    report(stmt);
+  }
 
-	stmt.close();
-	conn.close();
+  stmt.close();
+  conn.close();
 }
