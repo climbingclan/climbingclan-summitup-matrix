@@ -1,14 +1,14 @@
 function readEventListing(stmt) {
-  const useNewConnection = !stmt;
-  
-  if (useNewConnection) {
-    var conn = Jdbc.getConnection(url, username, password);
-    stmt = conn.createStatement();
-  }
+	const useNewConnection = !stmt;
 
-  makeReport(stmt, {
-    sheetName: "Event List",
-    query: `
+	if (useNewConnection) {
+		var conn = Jdbc.getConnection(url, username, password);
+		stmt = conn.createStatement();
+	}
+
+	makeReport(stmt, {
+		sheetName: "Event List",
+		query: `
       SELECT DISTINCT 
         order_item_name AS "Trip Name", 
         product_id AS "ID"
@@ -20,15 +20,15 @@ function readEventListing(stmt) {
         AND cc_attendance="pending" 
       ORDER BY product_id DESC
     `,
-    formatting: []
-  });
+		formatting: [],
+	});
 
-  if (useNewConnection) {
-    stmt.close();
-    conn.close();
-  }
+	if (useNewConnection) {
+		stmt.close();
+		conn.close();
+	}
 }
 
 function eventListing() {
-  readEventListing();
+	readEventListing();
 }
