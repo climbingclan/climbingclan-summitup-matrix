@@ -178,21 +178,21 @@ function makeReport(stmt, reportConfig) {
 }
 
 function setColumnWidth(sheet, columnHeader, width) {
-	var range = getColumnRange(sheet, columnHeader);
+	const range = getColumnRange(sheet, columnHeader);
 	sheet.setColumnWidth(range.getColumn(), width);
 }
 
 function refreshOutput() {
-	var conn = Jdbc.getConnection(url, username, password);
-	var stmt = conn.createStatement();
+	const conn = Jdbc.getConnection(url, username, password);
+	const stmt = conn.createStatement();
 	readOutput(stmt);
 	stmt.close();
 	conn.close();
 }
 
 function getIP() {
-	var url = "http://api.ipify.org";
-	var json = UrlFetchApp.fetch(url);
+	const url = "http://api.ipify.org";
+	const json = UrlFetchApp.fetch(url);
 	Logger.log(json);
 }
 
