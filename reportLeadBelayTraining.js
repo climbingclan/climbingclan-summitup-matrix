@@ -1,7 +1,7 @@
 function readLeadBelayTraining(stmt) {
-  makeReport(stmt, {
-    sheetName: "Lead Training",
-    query: `
+	makeReport(stmt, {
+		sheetName: "Lead Training",
+		query: `
       SELECT DISTINCT 
         db.\`first_name\` "Name", 
         db.\`nickname\` "fbname", 
@@ -25,21 +25,71 @@ function readLeadBelayTraining(stmt) {
         db.\`skills-trad-climbing\` ASC, 
         db.\`climbing-happy-to-supervise\` DESC
     `,
-    formatting: [
-      { type: 'colorLessThanOrEqual', column: "Volunteering", value: "0", color: colors.pink },
-      { type: 'colorLessThanOrEqual', column: "Volunteering", value: "2", color: colors.lightYellow },
-      { type: 'colorLessThanOrEqual', column: "Volunteering", value: "5", color: colors.yellow },
-      { type: 'colorLessThanOrEqual', column: "Receptiveness", value: "10", color: colors.pink },
-      { type: 'colorLessThanOrEqual', column: "Receptiveness", value: "20", color: colors.lightYellow },
-      { type: 'colorLessThanOrEqual', column: "Receptiveness", value: "30", color: colors.yellow },
-      { type: 'color', column: "Belaying Skills", search: "learner-lead-belayer", color: colors.brightYellow },
-      { type: 'color', column: "Belaying Skills", search: "lead-belayer", color: colors.green },
-      { type: 'color', column: "Belaying Skills", search: "top", color: colors.lightBlue },
-      { type: 'color', column: "Belaying Skills", search: "No-belaying", color: colors.lightRed },
-      { type: 'numberFormat', column: "Receptiveness", format: "0" },
-      { type: 'columnWidth', column: "fbname", width: 150 },
-      { type: 'columnWidth', column: "Requests and notes", width: 300 },
-      { type: 'wrap', column: "Requests and notes" }
-    ]
-  });
+		formatting: [
+			{
+				type: "colorLessThanOrEqual",
+				column: "Volunteering",
+				value: "0",
+				color: colors.pink,
+			},
+			{
+				type: "colorLessThanOrEqual",
+				column: "Volunteering",
+				value: "2",
+				color: colors.lightYellow,
+			},
+			{
+				type: "colorLessThanOrEqual",
+				column: "Volunteering",
+				value: "5",
+				color: colors.yellow,
+			},
+			{
+				type: "colorLessThanOrEqual",
+				column: "Receptiveness",
+				value: "10",
+				color: colors.pink,
+			},
+			{
+				type: "colorLessThanOrEqual",
+				column: "Receptiveness",
+				value: "20",
+				color: colors.lightYellow,
+			},
+			{
+				type: "colorLessThanOrEqual",
+				column: "Receptiveness",
+				value: "30",
+				color: colors.yellow,
+			},
+			{
+				type: "color",
+				column: "Belaying Skills",
+				search: "learner-lead-belayer",
+				color: colors.brightYellow,
+			},
+			{
+				type: "color",
+				column: "Belaying Skills",
+				search: "lead-belayer",
+				color: colors.green,
+			},
+			{
+				type: "color",
+				column: "Belaying Skills",
+				search: "top",
+				color: colors.lightBlue,
+			},
+			{
+				type: "color",
+				column: "Belaying Skills",
+				search: "No-belaying",
+				color: colors.lightRed,
+			},
+			{ type: "numberFormat", column: "Receptiveness", format: "0" },
+			{ type: "columnWidth", column: "fbname", width: 150 },
+			{ type: "columnWidth", column: "Requests and notes", width: 300 },
+			{ type: "wrap", column: "Requests and notes" },
+		],
+	});
 }

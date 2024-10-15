@@ -1,7 +1,7 @@
 function readRoles(stmt) {
-  makeReport(stmt, {
-    sheetName: "Roles",
-    query: `
+	makeReport(stmt, {
+		sheetName: "Roles",
+		query: `
       SELECT 
         'Event Director' AS Role, 
         1 AS 'Ideal number of people doing it'
@@ -30,8 +30,13 @@ function readRoles(stmt) {
       UNION ALL
       SELECT 'Be floorwalker', 1
     `,
-    formatting: [
-      { type: 'color', column: "Ideal number of people doing it", search: "", color: colors.lightBlue }
-    ]
-  });
+		formatting: [
+			{
+				type: "color",
+				column: "Ideal number of people doing it",
+				search: "",
+				color: colors.lightBlue,
+			},
+		],
+	});
 }

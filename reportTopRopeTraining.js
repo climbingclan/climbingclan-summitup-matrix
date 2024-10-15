@@ -1,7 +1,7 @@
 function readTopRopeTraining(stmt) {
-  makeReport(stmt, {
-    sheetName: "TR Belay Training",
-    query: `
+	makeReport(stmt, {
+		sheetName: "TR Belay Training",
+		query: `
       SELECT DISTINCT 
         db.\`first_name\` "Name", 
         db.\`nickname\` "fbname",  
@@ -21,14 +21,34 @@ function readTopRopeTraining(stmt) {
         \`skills-trad-climbing\` ASC,
         \`climbing-happy-to-supervise\` DESC
     `,
-    formatting: [
-      { type: 'colorLessThanOrEqual', column: "Attended", value: "0", color: colors.pink },
-      { type: 'colorLessThanOrEqual', column: "Attended", value: "2", color: colors.lightYellow },
-      { type: 'colorLessThanOrEqual', column: "Attended", value: "10", color: colors.white },
-      { type: 'color', column: "Belaying Skills", search: "No-belaying", color: colors.lightRed },
-      { type: 'columnWidth', column: "fbname", width: 150 },
-      { type: 'columnWidth', column: "Requests and notes", width: 300 },
-      { type: 'wrap', column: "Requests and notes" }
-    ]
-  });
+		formatting: [
+			{
+				type: "colorLessThanOrEqual",
+				column: "Attended",
+				value: "0",
+				color: colors.pink,
+			},
+			{
+				type: "colorLessThanOrEqual",
+				column: "Attended",
+				value: "2",
+				color: colors.lightYellow,
+			},
+			{
+				type: "colorLessThanOrEqual",
+				column: "Attended",
+				value: "10",
+				color: colors.white,
+			},
+			{
+				type: "color",
+				column: "Belaying Skills",
+				search: "No-belaying",
+				color: colors.lightRed,
+			},
+			{ type: "columnWidth", column: "fbname", width: 150 },
+			{ type: "columnWidth", column: "Requests and notes", width: 300 },
+			{ type: "wrap", column: "Requests and notes" },
+		],
+	});
 }

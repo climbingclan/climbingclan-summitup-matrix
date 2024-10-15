@@ -1,8 +1,8 @@
 function readVolunteers(stmt) {
-  makeReport(stmt, {
-    sheetName: "Volunteering",
-    title: "Volunteers",
-    query: `
+	makeReport(stmt, {
+		sheetName: "Volunteering",
+		title: "Volunteers",
+		query: `
       SELECT 
         db.\`first_name\` AS "First Name",
         db.\`last_name\` AS "Last Name",
@@ -43,45 +43,98 @@ function readVolunteers(stmt) {
         volunteer_indoor_event_reporter,
         volunteer_indoor_check_in
     `,
-    formatting: [
-      { type: 'numberFormat', column: "Receptiveness", format: "0" },
-      { type: 'colorLessThanOrEqual', column: "V Reliability%", value: "50", color: colors.yellow },
-      { type: 'colorLessThanOrEqual', column: "V Reliability%", value: "80", color: colors.pink },
-      { type: 'colorLessThanOrEqual', column: "V Reliability%", value: "90", color: colors.lightYellow },
-      { type: 'colorLessThanOrEqual', column: "Receptiveness", value: "10", color: colors.pink },
-      { type: 'colorLessThanOrEqual', column: "Receptiveness", value: "20", color: colors.lightYellow },
-      { type: 'colorLessThanOrEqual', column: "Receptiveness", value: "30", color: colors.yellow },
-      { type: 'color', column: "Selected Roles", search: "none", color: colors.lightGreen },
-      { type: 'color', column: "Selected Roles", search: "Selected", color: colors.white },
-      { type: 'color', column: "Selected Roles", search: "", color: colors.lightBlue },
-      { type: 'text', column: "FB promo", search: "No", color: colors.grey },
-      { type: 'text', column: "Rprtr", search: "No", color: colors.grey },
-      { type: 'text', column: "Check-in", search: "No", color: colors.grey },
-      { type: 'text', column: "WelcLn", search: "No", color: colors.grey },
-      { type: 'text', column: "Rnd Up", search: "No", color: colors.grey },
-      { type: 'text', column: "PreCake", search: "No", color: colors.grey },
-      { type: 'text', column: "PostCake", search: "No", color: colors.grey },
-      { type: 'text', column: "Anncments Vol", search: "No", color: colors.grey },
-      { type: 'text', column: "Anncments Compet", search: "No", color: colors.grey },
-      { type: 'text', column: "Pair", search: "No", color: colors.grey },
-      { type: 'text', column: "Event Dir", search: "No", color: colors.grey },
-      { type: 'text', column: "Flwlkr", search: "No", color: colors.grey },
-      { type: 'columnWidth', column: "Requests and notes", width: 200 },
-      { type: 'wrap', column: "Requests and notes" }
-    ]
-  });
+		formatting: [
+			{ type: "numberFormat", column: "Receptiveness", format: "0" },
+			{
+				type: "colorLessThanOrEqual",
+				column: "V Reliability%",
+				value: "50",
+				color: colors.yellow,
+			},
+			{
+				type: "colorLessThanOrEqual",
+				column: "V Reliability%",
+				value: "80",
+				color: colors.pink,
+			},
+			{
+				type: "colorLessThanOrEqual",
+				column: "V Reliability%",
+				value: "90",
+				color: colors.lightYellow,
+			},
+			{
+				type: "colorLessThanOrEqual",
+				column: "Receptiveness",
+				value: "10",
+				color: colors.pink,
+			},
+			{
+				type: "colorLessThanOrEqual",
+				column: "Receptiveness",
+				value: "20",
+				color: colors.lightYellow,
+			},
+			{
+				type: "colorLessThanOrEqual",
+				column: "Receptiveness",
+				value: "30",
+				color: colors.yellow,
+			},
+			{
+				type: "color",
+				column: "Selected Roles",
+				search: "none",
+				color: colors.lightGreen,
+			},
+			{
+				type: "color",
+				column: "Selected Roles",
+				search: "Selected",
+				color: colors.white,
+			},
+			{
+				type: "color",
+				column: "Selected Roles",
+				search: "",
+				color: colors.lightBlue,
+			},
+			{ type: "text", column: "FB promo", search: "No", color: colors.grey },
+			{ type: "text", column: "Rprtr", search: "No", color: colors.grey },
+			{ type: "text", column: "Check-in", search: "No", color: colors.grey },
+			{ type: "text", column: "WelcLn", search: "No", color: colors.grey },
+			{ type: "text", column: "Rnd Up", search: "No", color: colors.grey },
+			{ type: "text", column: "PreCake", search: "No", color: colors.grey },
+			{ type: "text", column: "PostCake", search: "No", color: colors.grey },
+			{
+				type: "text",
+				column: "Anncments Vol",
+				search: "No",
+				color: colors.grey,
+			},
+			{
+				type: "text",
+				column: "Anncments Compet",
+				search: "No",
+				color: colors.grey,
+			},
+			{ type: "text", column: "Pair", search: "No", color: colors.grey },
+			{ type: "text", column: "Event Dir", search: "No", color: colors.grey },
+			{ type: "text", column: "Flwlkr", search: "No", color: colors.grey },
+			{ type: "columnWidth", column: "Requests and notes", width: 200 },
+			{ type: "wrap", column: "Requests and notes" },
+		],
+	});
 }
-
 
 function volunteerData() {
-  var conn = Jdbc.getConnection(url, username, password);
-  var stmt = conn.createStatement();
+	var conn = Jdbc.getConnection(url, username, password);
+	var stmt = conn.createStatement();
 
-  readVolunteers(stmt);
+	readVolunteers(stmt);
 
-  stmt.close();
-  conn.close();
+	stmt.close();
+	conn.close();
 
-  return "done";
+	return "done";
 }
-

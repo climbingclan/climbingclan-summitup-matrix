@@ -1,8 +1,7 @@
-
 function readBandsNeeded(stmt) {
-    makeReport(stmt, {
-        sheetName: "Bands",
-        query: `
+	makeReport(stmt, {
+		sheetName: "Bands",
+		query: `
       SELECT 
         "Given Badge" AS "Given Badge",
         db.\`first_name\` AS "First Name",
@@ -19,20 +18,25 @@ function readBandsNeeded(stmt) {
         AND ((db.milestones_5_band IS NULL) OR (db.milestones_5_band ="due"))
       ORDER BY db.\`first_name\`, CAST(db.stats_volunteer_for_numerator_cached AS UNSIGNED INTEGER) DESC
     `,
-        formatting: [
-            { type: 'color', column: "Given Badge", search: "", color: colors.lightBlue },
-            { type: 'numberFormat', column: "Volunteered For", format: "0" },
-            { type: 'columnWidth', column: "Facebook Name", width: 150 },
-            { type: 'columnWidth', column: "Clan ID", width: 100 },
-        ],
-        title: "People who need bands"
-    });
+		formatting: [
+			{
+				type: "color",
+				column: "Given Badge",
+				search: "",
+				color: colors.lightBlue,
+			},
+			{ type: "numberFormat", column: "Volunteered For", format: "0" },
+			{ type: "columnWidth", column: "Facebook Name", width: 150 },
+			{ type: "columnWidth", column: "Clan ID", width: 100 },
+		],
+		title: "People who need bands",
+	});
 
-    // Add checkboxes to column A from row 2 downwards
-    let sheet = SpreadsheetApp.getActive().getSheetByName("Bands");
-    let lastRow = sheet.getLastRow();
-    if (lastRow > 1) {
-        let range = sheet.getRange(2, 1, lastRow - 1, 1);
-        range.insertCheckboxes();
-    }
+	// Add checkboxes to column A from row 2 downwards
+	const sheet = SpreadsheetApp.getActive().getSheetByName("Bands");
+	const lastRow = sheet.getLastRow();
+	if (lastRow > 1) {
+		const range = sheet.getRange(2, 1, lastRow - 1, 1);
+		range.insertCheckboxes();
+	}
 }

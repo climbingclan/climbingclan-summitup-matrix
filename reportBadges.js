@@ -1,9 +1,7 @@
-
-
 function readBadgesNeeded(stmt) {
-  makeReport(stmt, {
-    sheetName: "Badges",
-    query: `
+	makeReport(stmt, {
+		sheetName: "Badges",
+		query: `
       SELECT 
         "Given Badge" AS "Given Badge",
         db.\`first_name\` AS "First Name",
@@ -19,29 +17,33 @@ function readBadgesNeeded(stmt) {
         AND ((db.milestones_3_badge IS NULL) OR (db.milestones_3_badge ="due"))
       ORDER BY db.\`first_name\`, CAST(db.stats_volunteer_for_numerator_cached AS UNSIGNED INTEGER) DESC
     `,
-    formatting: [
-      { type: 'color', column: "Given Badge", search: "", color: colors.lightGreen },
-      { type: 'numberFormat', column: "Volunteered For", format: "0" },
-      { type: 'columnWidth', column: "Facebook Name", width: 150 },
-      { type: 'columnWidth', column: "Clan ID", width: 100 },
-    ],
-    title: "People who need badges"
-  });
+		formatting: [
+			{
+				type: "color",
+				column: "Given Badge",
+				search: "",
+				color: colors.lightGreen,
+			},
+			{ type: "numberFormat", column: "Volunteered For", format: "0" },
+			{ type: "columnWidth", column: "Facebook Name", width: 150 },
+			{ type: "columnWidth", column: "Clan ID", width: 100 },
+		],
+		title: "People who need badges",
+	});
 
-  // Add checkboxes to column A from row 2 downwards
-  let sheet = SpreadsheetApp.getActive().getSheetByName("Badges");
-  let lastRow = sheet.getLastRow();
-  if (lastRow > 1) {
-    let range = sheet.getRange(2, 1, lastRow - 1, 1);
-    range.insertCheckboxes();
-  }
+	// Add checkboxes to column A from row 2 downwards
+	const sheet = SpreadsheetApp.getActive().getSheetByName("Badges");
+	const lastRow = sheet.getLastRow();
+	if (lastRow > 1) {
+		const range = sheet.getRange(2, 1, lastRow - 1, 1);
+		range.insertCheckboxes();
+	}
 }
 
-
 function readBadgesGiven(stmt) {
-  makeReport(stmt, {
-    sheetName: "Badges Given",
-    query: `
+	makeReport(stmt, {
+		sheetName: "Badges Given",
+		query: `
       SELECT 
         "Given Badge" AS "Given Badge",
         db.\`first_name\` AS "First Name",
@@ -56,12 +58,17 @@ function readBadgesGiven(stmt) {
         AND db.milestones_3_badge="given"
       ORDER BY db.\`first_name\`, CAST(db.stats_volunteer_for_numerator_cached AS UNSIGNED INTEGER) DESC
     `,
-    formatting: [
-      { type: 'color', column: "Given Badge", search: "", color: colors.lightYellow },
-      { type: 'columnWidth', column: "Facebook Name", width: 150 },
-      { type: 'columnWidth', column: "Given by", width: 150 },
-      { type: 'columnWidth', column: "Given on", width: 120 },
-    ],
-    title: "People who have been given badges"
-  });
+		formatting: [
+			{
+				type: "color",
+				column: "Given Badge",
+				search: "",
+				color: colors.lightYellow,
+			},
+			{ type: "columnWidth", column: "Facebook Name", width: 150 },
+			{ type: "columnWidth", column: "Given by", width: 150 },
+			{ type: "columnWidth", column: "Given on", width: 120 },
+		],
+		title: "People who have been given badges",
+	});
 }
