@@ -131,10 +131,18 @@ function setNumberFormat(sheet, columnHeader, format) {
 
 function makeReport(stmt, reportConfig) {
   let sheet = setupSheet(reportConfig.sheetName);
+  
+  let query = reportConfig.query;
+  
+  // Only replace ${cell} if it exists in the query
+  if (query.includes("${cell}")) {
     if (isNaN(cell) || cell === "") {
       throw new Error("Invalid event selected - please try again");
     }
-  var results = stmt.executeQuery(reportConfig.query.replace(/\${cell}/g, cell));
+    query = query.replace(/\${cell}/g, cell);
+  }
+  
+  var results = stmt.executeQuery(query);
 
   appendToSheet(sheet, results);
 
